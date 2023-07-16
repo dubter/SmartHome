@@ -142,9 +142,8 @@ func main() {
 	}
 
 	for {
-		length := hub.pldsQueue.Size()
 		// выполняем запланированные действия
-		for i := 0; i < length; i++ {
+		for hub.pldsQueue.Size() > 0 {
 			task := hub.pldsQueue.Take()
 			err = hub.SendMess(task)
 			if errors.As(err, &e) {
